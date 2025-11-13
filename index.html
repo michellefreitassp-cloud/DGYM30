@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desafio DGYM30 - Presenças</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <h1>Desafio DGYM30</h1>
+          <p class="subtitle">
+            Controle diário de presenças e ranking das categorias Transformação e
+            Constância.
+          </p>
+        </div>
+        <button id="reset-data" class="ghost-button" type="button">
+          Limpar dados
+        </button>
+      </header>
+
+      <main class="content">
+        <section class="card">
+          <h2>Cadastrar participante</h2>
+          <form id="student-form" class="form" autocomplete="off">
+            <div class="field">
+              <label for="student-name">Nome</label>
+              <input
+                id="student-name"
+                name="student-name"
+                type="text"
+                placeholder="Ex.: Ana Souza"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="student-category">Categoria</label>
+              <select id="student-category" name="student-category" required>
+                <option value="">Selecione uma categoria</option>
+                <option value="transformacao">Transformação</option>
+                <option value="constancia">Constância</option>
+              </select>
+            </div>
+            <button type="submit" class="primary-button">
+              Adicionar participante
+            </button>
+          </form>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h2>Presenças do dia</h2>
+            <input id="date-picker" type="date" />
+          </div>
+          <div id="students-list" class="students-list"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h2>Ranking mensal</h2>
+            <div class="month-selector">
+              <label for="month-picker">Mês</label>
+              <input id="month-picker" type="month" />
+            </div>
+          </div>
+          <div class="ranking-grid">
+            <div class="ranking" id="transformacao-ranking">
+              <div class="ranking-header">
+                <h3>Transformação</h3>
+                <button
+                  class="ghost-button"
+                  type="button"
+                  data-copy="transformacao"
+                >
+                  Copiar ranking
+                </button>
+              </div>
+              <p class="ranking-description">
+                Objetivo: realizar pelo menos 15 aulas no mês.
+              </p>
+              <ol class="ranking-list"></ol>
+            </div>
+
+            <div class="ranking" id="constancia-ranking">
+              <div class="ranking-header">
+                <h3>Constância</h3>
+                <button
+                  class="ghost-button"
+                  type="button"
+                  data-copy="constancia"
+                >
+                  Copiar ranking
+                </button>
+              </div>
+              <p class="ranking-description">
+                Objetivo: realizar o maior número de aulas possível.
+              </p>
+              <ol class="ranking-list"></ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="card tips">
+          <h2>Dicas de uso</h2>
+          <ul>
+            <li>Adicione todos os participantes e marque a presença diária em poucos cliques.</li>
+            <li>Use o seletor de mês para acompanhar o desempenho mensal.</li>
+            <li>Compartilhe o ranking com a turma usando os botões de copiar.</li>
+            <li>Os dados ficam salvos automaticamente no seu navegador.</li>
+          </ul>
+        </section>
+      </main>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <template id="student-template">
+      <article class="student-card">
+        <div>
+          <h3 class="student-name"></h3>
+          <p class="student-meta"></p>
+        </div>
+        <label class="presence-switch">
+          <input type="checkbox" class="presence-checkbox" />
+          <span class="slider"></span>
+        </label>
+      </article>
+    </template>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
